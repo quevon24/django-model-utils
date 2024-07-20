@@ -49,7 +49,8 @@ parent_dir = os.path.dirname(os.path.dirname(__file__))
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-release = importlib.metadata.version('django-model-utils')
+# release = importlib.metadata.version('django-model-utils')
+release = "4.5.2"
 
 # for example take major/minor
 version = '.'.join(release.split('.')[:2])
