@@ -92,8 +92,14 @@ class DescriptorWrapper(Generic[T]):
     def __get__(self, instance: models.Model | None, owner: type[models.Model]) -> DescriptorWrapper[T] | T:
         if instance is None:
             return self
+        print("instance.get_deferred_fields()", instance.get_deferred_fields())
+        print("self.field_name", self.field_name)
         was_deferred = self.field_name in instance.get_deferred_fields()
         value = self.descriptor.__get__(instance, owner)
+        print("value", value)
+        print("self.tracker_attname", self.tracker_attname)
+        print("type instance", type(instance))
+        print("instance", instance)
         if was_deferred:
             tracker_instance = getattr(instance, self.tracker_attname)
             tracker_instance.saved_data[self.field_name] = lightweight_deepcopy(value)
